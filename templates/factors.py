@@ -6,3 +6,4 @@ def factors(num) :
             if i*i != num :
                 facts.append(num//i)
     return facts
+print(factors(12))
