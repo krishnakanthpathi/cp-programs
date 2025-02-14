@@ -9,6 +9,17 @@ def primefactors(n):
                 n = n // i
                 count += 1
             pairs.append((i , count))
+    if n != 1 : pairs.append((n , 1))
     return pairs
-# prime factorization by sieve
 
+import math
+def main() :
+    n = int(input())
+    arr = set()
+    for i in range(2 , n + 1):
+        for temp in primefactors(i) :
+            arr.add(temp)
+    res = [ key**val for key , val in arr]
+    print(len(res))
+    print(*res)
+main()
