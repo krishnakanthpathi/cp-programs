@@ -1,4 +1,4 @@
-def lpsarr(part: str) -> list[int]:
+def lps(part: str) -> list[int]:
     i, length, m = 1, 0, len(part)
     lps = [0] * m
 
@@ -24,11 +24,11 @@ def KMP(s: str, part: str, lps: list[int]) -> int:
             i += 1
             j += 1
             if j == m:
-                return i - m  # Found occurrence
+                return i - m  
         elif j > 0:
-            j = lps[j - 1]  # Use LPS to avoid redundant comparisons
+            j = lps[j - 1]  
         else:
-            i += 1  # Move to the next character in `s`
+            i += 1 
     
-    return -1  # No match found
+    return -1  
 
