@@ -12,8 +12,10 @@ class UnionFind :
 
         if self.rank[par1] > self.rank[par2] :
             self.parent[par2] = par1
+            self.rank[par1] += self.rank[par2]
         elif self.rank[par2] > self.rank[par1] :
             self.parent[par1] = par2
+            self.rank[par2] += self.rank[par1]
         else:
             self.parent[par2] = par1
             self.rank[par1] += 1
