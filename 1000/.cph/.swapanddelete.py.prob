@@ -1,0 +1,1 @@
+{"name":"Local: swapanddelete","url":"/Users/krishnakanth/Desktop/DSA/projects/1000/swapanddelete.py","tests":[{"id":1760501852583,"input":"4\n0\n011\n0101110001\n111100\n","output":"1\n1\n0\n4\n","original":false}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/krishnakanth/Desktop/DSA/projects/1000/swapanddelete.py","group":"local","local":true}

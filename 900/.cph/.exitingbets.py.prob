@@ -1,0 +1,1 @@
+{"name":"Local: exitingbets","url":"/Users/krishnakanth/Desktop/DSA/projects/900/exitingbets.py","tests":[{"id":1760114227799,"input":"4\n8 5\n1 2\n4 4\n3 9\n","output":"3 1\n1 0\n0 0\n6 3\n","original":false}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/krishnakanth/Desktop/DSA/projects/900/exitingbets.py","group":"local","local":true}

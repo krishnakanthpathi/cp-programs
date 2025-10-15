@@ -1,3 +1,6 @@
+import sys
+import math
+
 t = int(input())
 
 for _ in range(t):
@@ -7,11 +10,14 @@ for _ in range(t):
     neg = sum(1 for i in a if i < 0)
     pos = sum(1 for i in a if i > 0)
     
-    if neg % 2 == 0 and pos >= neg:
-        print(0)
-    elif neg % 2 == 0 and pos < neg:
-        diff = neg - pos
-        print(diff)
-    elif neg % 2 == 1 and pos < neg:
-        diff = neg - pos - 1
-        print(diff//2 + 1 )
+    diff = neg - pos 
+    if diff > 0 :
+        ceiled = diff // 2
+        if neg - ceiled > pos + ceiled:
+            ceiled += 1
+        
+        print(ceiled if (neg - ceiled)% 2 == 0 else min(n , ceiled + 1))
+        sys.stdout.flush()
+    else:
+        print(1 if neg % 2 != 0 else 0)
+        sys.stdout.flush()

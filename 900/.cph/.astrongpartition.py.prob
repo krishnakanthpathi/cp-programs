@@ -1,0 +1,1 @@
+{"name":"Local: astrongpartition","url":"/Users/krishnakanth/Desktop/DSA/projects/900/astrongpartition.py","tests":[{"id":1760374191546,"input":"2\n3 3\n3 6 9\n3 3\n6 4 11\n","output":"6 6\n7 8\n","original":false}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/krishnakanth/Desktop/DSA/projects/900/astrongpartition.py","group":"local","local":true}
