@@ -11,7 +11,10 @@ def main():
             zeros -= 1
         if ones < 0 or zeros < 0:
             res += 1
+
     print(res)
+    
+    
     
 if __name__ == "__main__":
     t = int(input())
