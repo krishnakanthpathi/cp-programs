@@ -16,6 +16,7 @@ def main():
             if idx == len(res):
                 idx = 0
             ans = max(ans, (res[idx] - i) % n)
+    
     print(ans)
     
     
