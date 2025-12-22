@@ -15,7 +15,7 @@ def main():
         if i < b:
             res += "B"
    
-    ans = (res + "R" * extra) 
+    ans = (res + "R" * extra)   
     print(ans)
 if __name__ == "__main__":
     for _ in range(int(input())):
