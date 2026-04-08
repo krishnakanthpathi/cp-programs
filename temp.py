@@ -1,42 +1,50 @@
-import math
+class Robot:
+    def __init__(self, width: int, height: int):
+        self.width = width
+        self.height = height
+        self.x = 0
+        self.y = 0
+        self.directions =  [(1 , 0) , (0 , 1) , (-1 , 0) , (0 , -1)] # ['East', 'North', 'West', 'South']
+        self.boundarys = [width - 1, height - 1, 0, 0] # [max_x, max_y, min_x, min_y]
+        self.direction_index = 0
 
-def nthpermuation(zeros, ones, n):
-
-    total_len = zeros + ones
-    
- 
-    result = []
-    
-    for i in range(total_len):
-        if zeros > 0:
-            remaining_len = (total_len - 1) - i
-            count_with_zero = math.comb(remaining_len, ones)
+    def step(self, num: int) -> None:
+        num %= (2 * (self.width + self.height - 2))
+        if num == 0 and (self.x, self.y) == (0, 0):
+            self.direction_index = 3
+        while num > 0:
+            # east 
+            if self.direction_index == 0 and self.x == self.boundarys[0]:
+                self.direction_index = (self.direction_index + 1) % 4
+            # north
+            elif self.direction_index == 1 and self.y == self.boundarys[1]:
+                self.direction_index = (self.direction_index + 1) % 4
+            # west
+            elif self.direction_index == 2 and self.x == self.boundarys[2]:
+                self.direction_index = (self.direction_index + 1) % 4
+            # south
+            elif self.direction_index == 3 and self.y == self.boundarys[3]:
+                self.direction_index = (self.direction_index + 1) % 4
             
-            if n <= count_with_zero:
-                result.append('0')
-                zeros -= 1
-            else:
-                result.append('1')
-                ones -= 1
-                n -= count_with_zero
-        else:
-            result.append('1')
-            ones -= 1
-            
-    return "".join(result)
+            dx , dy = self.directions[self.direction_index][0] , self.directions[self.direction_index][1]
+            # print( num , self.direction_index , "x , y" ,  self.x , self.y )
 
-# --- Wrapper Helper ---
-def solve_from_string(s, n):
-    """Helper to take a string like '0011' instead of counts"""
-    z = s.count('0')
-    o = s.count('1')
-    return get_nth_binary_permutation(z, o, n)
+            steps_x = min(self.width - self.x - 1 , num) * dx if self.directions[self.direction_index][0] >= 0 else min(self.x  , num ) * dx 
+            steps_y = min(self.height - self.y - 1, num) * dy if self.directions[self.direction_index][1] >= 0 else min(self.y , num ) * dy
+            # print(steps_x , steps_y)
+            self.x += steps_x 
+            self.y += steps_y
+            # print(num)
+        
 
-# --- Usage Examples ---
+            num -= max(abs(steps_x) , abs(steps_y))
+        
+        
 
-# Example 1: Direct counts (3 zeros, 2 ones), find 5th permutation
-# Sequence: 00011, 00101, 00110, 01001, 01010 ...
-print(f"5th permutation of 3 zeros, 2 ones: {get_nth_binary_permutation(3, 2, 5)}")
 
-# Example 2: Using an input string "011", find 2nd permutation
-print(f"2nd permutation of '011': {solve_from_string('011', 2)}")
+    def getPos(self) -> List[int]:
+        return [self.x, self.y]
+
+    def getDir(self) -> str:
+        directions = ['East', 'North', 'West', 'South']
+        return directions[self.direction_index]
