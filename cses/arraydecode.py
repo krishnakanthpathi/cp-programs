@@ -14,25 +14,39 @@ dp = [
   [ 0  for j in range(m + 1) ] for i in range(n + 1)
 ]
 
+# we will find the number of arrays of prefix
+# such that it having a k as the element previous
 
 
-for i in range(n) :
-    for j in range(1 , m + 1):
-        if arr[i] != 0 :
-            dp[i][j] += 1 + dp[i - 1][j] if i - 1 >= 0 else 1
-            continue
+for i in range(n):
+
+    if arr[i] == 0 :
+        for j in range(1 , m + 1) :
+            
+            if i == 0 :
+                dp[0][j] = 1 
+                continue
+
+            dp[i][j] = sum([
+                dp[i - 1][j] if i - 1 >= 0 else (
+                    1 if arr[i - 1] != 0 and j == arr[i - 1]  else 0
+                ) , 
+                dp[i - 1][j - 1] if i - 1 >= 0  and j - 1 >= 0  else  0, 
+                dp[i - 1][j + 1] if i - 1 >= 0 and j + 1 <= m  else 0 
+                ]) % MOD 
         
-        if i == 0 :
-            # yet to be implemented
-            continue
+    else:
+        dp[i][arr[i]] = sum([
+            dp[i - 1][arr[i]] if i - 1 >= 0 else 1, 
+            dp[i - 1][arr[i] - 1] if i - 1 >= 0 and arr[i] - 1 >= 0 else 0 , 
+            dp[i - 1][arr[i] + 1] if i - 1 >= 0 and arr[i] + 1 <= m  else 0 
+            ]) % MOD
+    # print(dp[i] )
 
-        if abs(arr[i - 1] - j) > 1  :
-            continue
-
-        dp[i][j] += dp[i - 1][j] + 1
-    print(dp[i] )
-print(dp[n][m])
-        
+if arr[-1] == 0 :
+    print(sum(dp[n-1])%MOD)
+else:
+    print(dp[n-1][arr[-1]]%MOD)
 
 
 
